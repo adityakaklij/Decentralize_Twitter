@@ -1,7 +1,6 @@
-import './App.css';
+import './css/App.css';
 import Feed from './Feed';
 import Sidebar from './Sidebar';
-import SidebarOption from './SidebarOption';
 import Widgets from './Widgets';
 
 function App() {

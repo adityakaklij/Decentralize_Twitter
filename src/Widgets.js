@@ -1,7 +1,7 @@
 import { Search } from '@mui/icons-material'
 import React from 'react'
 import { TwitterShareButton, TwitterTimelineEmbed, TwitterTweetEmbed } from 'react-twitter-embed'
-import "./Widgets.css"
+import "./css/Widgets.css"
 
 
 function Widgets() {
