@@ -18,6 +18,7 @@ function Post({
     avatar
 }) {
 
+ 
   return (
     <div className='post'>
         <div className="post_avatar">
@@ -41,7 +42,9 @@ function Post({
                     
                 </div>
                 
-                <img src={image} alt="Image by user" />
+                {/* <img src={`${image.replace(" ", "")}`} alt="Image by user" /> */}
+                <img src={`${image}`} alt="Image by user" />
+                
                 
                 {/* interaction icons */}
                 <div className="post_footer">

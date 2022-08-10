@@ -2,6 +2,7 @@ import { Avatar, Button } from '@mui/material'
 import React, { useState } from 'react'
 import "./css/Tweetbox.css"
 import db from './Firebase/firebase1'
+import svgString from './identicons/icons.mjs'
 
 function Tweetbox() {
 
@@ -12,12 +13,13 @@ function Tweetbox() {
       // Prevents from refreshing the page when we submit the form.
       e.preventDefault();
       db.collection("posts").add({
-        displayName: "User 3",
-        userName: "user3",
+        displayName: "User 4",
+        userName: "user4",
         verified: false,
         text: tweetMessage,
         image: tweetImage,
-        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ETPUM3G6l9Pe3VTHbMbx_yfLk5KqZ_kU9w&usqp=CAU"
+        avatar: svgString
+        // avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ETPUM3G6l9Pe3VTHbMbx_yfLk5KqZ_kU9w&usqp=CAU"
       })
 
   }

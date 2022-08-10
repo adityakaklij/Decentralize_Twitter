@@ -31,6 +31,7 @@ function Feed() {
         {post.map( post => (
           <Post
             displayName={post.displayName}
+            // displayName={}
             userName={post.userName}
             verified={post.verified}
             text={post.text}

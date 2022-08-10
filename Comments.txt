@@ -4,3 +4,23 @@ npm i react-twitter-embed
 npm install firebase
 npm install -g firebase-tools  
 npm i react-flip-move
+
+
+// for the identicons
+
+
+
+
+
+
+    deploying on the firebase
+    firebase init
+        choose Hosting
+        use existing project
+    build
+        y
+    npm run build
+    firebase deploy 
+        (Will get the Hosting URL there itself)
+
+    
