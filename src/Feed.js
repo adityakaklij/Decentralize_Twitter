@@ -30,6 +30,7 @@ function Feed() {
 
         {post.map( post => (
           <Post
+          key = {post.text}
             displayName={post.displayName}
             // displayName={}
             userName={post.userName}

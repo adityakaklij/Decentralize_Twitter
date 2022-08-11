@@ -13,8 +13,8 @@ function Tweetbox() {
       // Prevents from refreshing the page when we submit the form.
       e.preventDefault();
       db.collection("posts").add({
-        displayName: "User 4",
-        userName: "user4",
+        displayName: "User 1",
+        userName: "user1",
         verified: false,
         text: tweetMessage,
         image: tweetImage,
