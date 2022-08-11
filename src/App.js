@@ -3,6 +3,7 @@ import './css/App.css';
 import Feed from './Feed';
 import Sidebar from './Sidebar';
 import Widgets from './Widgets';
+import {AppContext} from './Context/AppContext'
 
 function App() {
 
@@ -39,19 +40,24 @@ function App() {
     else{
 
       return (
-        <div className="app">
+        <>
+          <AppContext.Provider value = {account}>
+              <div className="app">
 
-          {/* SideBar */}
-            <Sidebar/>
+
+              {/* SideBar */}
+                <Sidebar/>
 
 
-          {/* Feed */}
-          <Feed/>
+              {/* Feed */}
+              <Feed/>
 
-          {/* Widges */}
-          <Widgets/>
-        
-        </div>
+              {/* Widges */}
+              <Widgets/>
+            
+            </div>
+        </AppContext.Provider>
+        </>
       );
     }
 }

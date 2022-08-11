@@ -1,5 +1,6 @@
 import { Avatar, Button } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { AppContext } from './Context/AppContext'
 import "./css/Tweetbox.css"
 import db from './Firebase/firebase1'
 import svgString from './identicons/icons.mjs'
@@ -9,12 +10,17 @@ function Tweetbox() {
   const[tweetMessage, setTweetMessage] = useState('')
   const [tweetImage, setTweetImage] = useState('')
 
+  const account = useContext(AppContext)
+
+
   const sendTweet = (e)=>{
       // Prevents from refreshing the page when we submit the form.
       e.preventDefault();
       db.collection("posts").add({
-        displayName: "User 1",
-        userName: "user1",
+        // displayName: "User 1",
+        // displayName: add,
+        displayName: `${account.slice(0,3)}..${account.slice(account.length -3)}`,
+        userName: "user2",
         verified: false,
         text: tweetMessage,
         image: tweetImage,
