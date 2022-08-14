@@ -18,7 +18,7 @@ function Widgets() {
 
         {/* From the twitter Embede Part   */}
         
-        <TwitterTweetEmbed tweetId={'1555618663335886849'}></TwitterTweetEmbed>
+        {/* <TwitterTweetEmbed tweetId={'1555618663335886849'}></TwitterTweetEmbed>
 
         <TwitterTimelineEmbed
           sourceType='profile'
@@ -31,7 +31,7 @@ function Widgets() {
           options = {{text:"get the updates form @adityakaklij",
           via: "adityakaklij"}}
 
-        />
+        /> */}
       </div>
 
     </div>

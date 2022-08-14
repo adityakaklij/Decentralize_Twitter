@@ -3,6 +3,7 @@
     align-items: flex-start;
     border-bottom: 1px solid var(--twitter-background);
     padding-bottom: 10px;
+    max-width: 440px;
     
 }
 
@@ -16,7 +17,7 @@
     border-radius: 20px;
 }
 img{
-    border-radius: 30px;
+    border-radius: 20px;
 }
 .post_footer{
     display: flex;
@@ -41,4 +42,10 @@ img{
 
 .post_avatar{
     padding: 20px;
+}
+
+.post_headerDescription{
+    font-size: 1.5em;
+    padding-top: 15px;
+    font-family: -webkit-body;
 }
