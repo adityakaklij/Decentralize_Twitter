@@ -8,13 +8,6 @@ import RepeatIcon from '@mui/icons-material/Repeat';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PublishIcon from '@mui/icons-material/Publish';
 
-import { ProfileContract, ProfileABI } from './Constants/Profile'
-import { ethers } from 'ethers'
-import { useContext } from 'react';
-import { AppContext } from './Context/AppContext';
-import { useState , useEffect} from 'react';
-
-
 
 function Post({
     
@@ -25,14 +18,7 @@ function Post({
     image,
     avatar
 }) {
-
-    const account = useContext(AppContext)
-    
-
-    
-
-      
-      
+     
 
   return (
     <div className='post'>

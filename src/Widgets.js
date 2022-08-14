@@ -9,7 +9,7 @@ function Widgets() {
     <div className='widgets'>
       <div className="widgets_input">
         <Search className='widgets_searchIcon'/>
-        <input placeholder='"Search Tweet ' type="text" />
+        <input placeholder='Search Tweets' type="text" />
       </div>
 
       <div className="widgets_widgetContainer">
@@ -18,7 +18,7 @@ function Widgets() {
 
         {/* From the twitter Embede Part   */}
         
-        {/* <TwitterTweetEmbed tweetId={'1555618663335886849'}></TwitterTweetEmbed>
+        <TwitterTweetEmbed tweetId={'1555618663335886849'}></TwitterTweetEmbed>
 
         <TwitterTimelineEmbed
           sourceType='profile'
@@ -31,7 +31,7 @@ function Widgets() {
           options = {{text:"get the updates form @adityakaklij",
           via: "adityakaklij"}}
 
-        /> */}
+        />
       </div>
 
     </div>

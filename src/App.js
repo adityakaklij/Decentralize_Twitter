@@ -17,7 +17,7 @@ function App() {
   useEffect( () =>{
     if(window.ethereum){
       setIsWalletInstalled(true);
-      // connectWallet()
+      connectWallet()
     }
   },[]);
 
@@ -58,7 +58,6 @@ function App() {
                 <Route exact path='/'>
                   {/* Feed */}
                   <Feed/>
-
                   {/* Widges */}
                   <Widgets/>
 
@@ -67,7 +66,6 @@ function App() {
                 <Route path='/ProfileUpload'>
 
                   <ProfileUpload/>
-                  <Widgets/>
                 </Route>
 
                 </Switch>

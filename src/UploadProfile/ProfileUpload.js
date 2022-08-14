@@ -6,7 +6,7 @@ import {NFTStorage} from 'nft.storage'
 
 import '../css/ProfileUpload.css'
 
-const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDFhNWNiQTlFYkQwRTcxZWE4NTA0Zjk5NGE0MkNBOUE3MWRlQTkwZTAiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2MDM5NDEyMjQxOSwibmFtZSI6IkRUd2l0dGVyLTEifQ.0N-3jYVHOy1etZJxQ9jSm_Pk34h9RVmTpSSO2H_XnX0'
+const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..0N-3jYVHOy1etZJxQ9jSm_Pk34h9RVmTpSSO2H_XnX0'
 
 function ProfileUpload() {
 
@@ -17,7 +17,6 @@ function ProfileUpload() {
     const [uploadFile ,setUploadFile] = useState()
     const [metaDataURL, setMetaDataURl] = useState()
     const [imageView, setImageView] = useState();
-    const [tweetData, setTweetData]= useState()
 //   const {account} = useContext(AppContext)
     const account = useContext(AppContext);
 
@@ -33,7 +32,7 @@ function ProfileUpload() {
             });
     
             setMetaDataURl(getIPFSGatewayURL(metaData.url));
-            console.log("Metadata:- ", metaData);
+            // console.log("Metadata:- ", metaData);
             previewNFT(metaData)
             MetaTrx(metaData)
             return metaData
@@ -76,7 +75,7 @@ function ProfileUpload() {
               <h3>Create Profile</h3>
          <div className='btn'>
           <form className='form'>
-              <label htmlFor="chooseFile"> Upload Profile Img
+              <label className='label1' htmlFor="chooseFile"> Upload Profile Img
               <input type="file" id='chooseFile' onChange={handleFileUpload}/>
               </label>
               <br />
@@ -84,7 +83,6 @@ function ProfileUpload() {
               <button className='mintBtn' onClick={mintNFTToken}>Mint Profile</button>
               {/* <button onClick={getProfileURL}>Get Profile</button> */}
 
-              
           </form>
       </div>
     </>

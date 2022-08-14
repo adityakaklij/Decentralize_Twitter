@@ -2,24 +2,18 @@ import React, { useEffect, useState, useContext } from 'react'
 import './css/Feed.css'
 import Post from './Post'
 import Tweetbox from './Tweetbox'
-import db from './Firebase/firebase1'
+// import db from './Firebase/firebase1'
 import { AppContext } from './Context/AppContext'
 
 import { ABI, contractAddress } from './Constants/data'
 import { ethers } from 'ethers'
+import { ProfileContract, ProfileABI } from './Constants/Profile'
 
 function Feed() {
 
   const account = useContext(AppContext)
-  const [inputData , setInputData] = useState()
   const [posts , setPosts] = useState([])
   const [keyCounter, setKeyCounter] = useState()// Might not very useful.
-
-  const [checkImg, setCheckImg]= useState()
-
-
-  const[post , setPost] = useState([]); // Creating empty array of the posts.
-  
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
@@ -29,16 +23,39 @@ function Feed() {
     // db.collection("posts").onSnapshot((snapshot) =>
     //   setPost(snapshot.docs.map((doc) => doc.data()))
     // );
-  }, []);
+
+    getBtn();
+    checkVerified()
+  });
+  const [verifyBatch, setVerifyBatch] = useState(false)
+
+  const checkVerified = async() =>{
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      const ProvidercontractInstance = new ethers.Contract(ProfileContract,ProfileABI,provider)
+      const checkProfile = await ProvidercontractInstance.nftCount(account)
+
+      if(checkProfile.toString() == 1){
+        setVerifyBatch(true)
+      }
+      else{
+        setVerifyBatch(false)
+      }
+         
+  } catch (error) {
+      alert(error)
+  }
+}
 
   let arr1 = []
+
   const getBtn = async() =>{
     const counter = await contractInstance.counter()
-    console.log( "Counter is :- ",counter.toString())
+    // console.log( "Counter is :- ",counter.toString())
     setKeyCounter(counter.toString())
 
     const tweetMapping = await contractInstance.tweetMapping(0)
-    console.log("Mapping 0 :- " ,tweetMapping);
+    // console.log("Mapping 0 :- " ,tweetMapping);
 
     for(let i = 0; i < counter.toString(); i ++){
 
@@ -46,9 +63,9 @@ function Feed() {
 
         const tokenMetada = await fetch(tweetStruct.str)
         const jsonData = await tokenMetada.json()
-        console.log("Tweet struct NAME:- ", jsonData.name)
-        console.log("Tweet struct IMAGE:- ", `https://ipfs.io/ipfs/${(jsonData.image).slice(7)}`)
-        console.log("Tweet struct DESCRIPTION:- ", jsonData.description)
+        // console.log("Tweet struct NAME:- ", jsonData.name)
+        // console.log("Tweet struct IMAGE:- ", `https://ipfs.io/ipfs/${(jsonData.image).slice(7)}`)
+        // console.log("Tweet struct DESCRIPTION:- ", jsonData.description)
         // arr1.push([jsonData.name ,jsonData.description, jsonData.image])
         let sample = `https://ipfs.io/ipfs/${(jsonData.image).slice(7)}`
         arr1.push([jsonData.name ,jsonData.description,sample ])
@@ -60,12 +77,9 @@ function Feed() {
         // console.log(`User Array string ${i}:- `, tweetStruct.str);
     }
     setPosts(arr1.reverse());
-    console.log("Arr1 is", arr1)
-    setCheckImg("arr1 3 of 2",arr1[3][2])
-  }
-  const dumy = "Dumy"
+    // console.log("Arr1 is", arr1)
 
-  
+  }
 
   return (
     <div className='feed'>
@@ -78,7 +92,7 @@ function Feed() {
         <Tweetbox/>
         
         {/* Posts */}
-        <button onClick={getBtn}>Get Tweets</button>
+        {/* <button onClick={getBtn}>Get Tweets</button> */}
         {/* <button onClick={getProfileURL}>Get Profile</button> */}
         {posts.map( posts => (
           <Post
@@ -87,8 +101,9 @@ function Feed() {
             // displayName={posts[0].slice(0,3)}
             displayName={`${posts[0].slice(0,3)}..${posts[0].slice(-3)}`}
             // userName={post.userName}
-            userName={dumy}
-            verified={true}
+            // userName={dumy}
+            userName={`${posts[0].slice(0,2)}..${posts[0].slice(-3)}`}
+            verified={verifyBatch}
             // text={post.text}
             text={posts[1]}
             // avatar={post.avatar}
@@ -96,7 +111,6 @@ function Feed() {
             // avatar="https://ipfs.io/ipfs/bafybeignermswfazuhctl6wwtlvird676ylli3vor7k7em7eqnkm6rjl2e/1_G9UfaUBS_VqtFILMe37fZw.jpeg"
             avatar=""
             // image={post.image}
-            // image={async ()=>{await fetch(posts[2])}}
             image={posts[2]}
             
           />

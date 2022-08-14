@@ -5,19 +5,18 @@ import "./css/Tweetbox.css"
 import db from './Firebase/firebase1'
 import svgString from './identicons/icons.mjs'
 
-import {NFTStorage , Blob, File} from 'nft.storage'
+import {NFTStorage , Blob} from 'nft.storage'
 import { ethers } from 'ethers'
 import { ABI, contractAddress } from './Constants/data'
 import { ProfileContract, ProfileABI } from './Constants/Profile'
 
 
-const APIKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDFhNWNiQTlFYkQwRTcxZWE4NTA0Zjk5NGE0MkNBOUE3MWRlQTkwZTAiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2MDM5NDEyMjQxOSwibmFtZSI6IkRUd2l0dGVyLTEifQ.0N-3jYVHOy1etZJxQ9jSm_Pk34h9RVmTpSSO2H_XnX0'
+const APIKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..0N-3jYVHOy1etZJxQ9jSm_Pk34h9RVmTpSSO2H_XnX0'
 function Tweetbox() {
 
   const [uploadFile ,setUploadFile] = useState(null)
   const [metaDataURL, setMetaDataURl] = useState()
   const [imageView, setImageView] = useState();
-  const [tweetData, setTweetData]= useState()
 
   const[tweetMessage, setTweetMessage] = useState('')
   const [tweetImage, setTweetImage] = useState('')
@@ -54,7 +53,7 @@ function Tweetbox() {
 
     try {
       if(uploadFile === null){
-        const someData = new Blob(["hello world"])
+        const someData = new Blob(["Data Without image"])
         const { car } = await NFTStorage.encodeBlob(someData)
         const metaData = await nftStorage.store({
           name:account,
@@ -63,10 +62,10 @@ function Tweetbox() {
           
       });
       setMetaDataURl(getIPFSGatewayURL(metaData.url));
-      console.log("Metadata:- ", metaData);
+      // console.log("Metadata:- ", metaData);
       previewNFT(metaData)
       MetaTrx(metaData)
-      console.log(metaData)
+      // console.log(metaData)
       return metaData
       }
 
@@ -78,7 +77,7 @@ function Tweetbox() {
       });
 
       setMetaDataURl(getIPFSGatewayURL(metaData.url));
-      console.log("Metadata:- ", metaData);
+      // console.log("Metadata:- ", metaData);
       previewNFT(metaData)
       MetaTrx(metaData)
       return metaData
@@ -114,13 +113,13 @@ function Tweetbox() {
 
   const handleFileUpload= async(event) =>{
     event.preventDefault()
+    setImgSelect("Img Selected !")
     setUploadFile(event.target.files[0])
 
   }
 
   async function getProfileURL(e){
     // e.preventDefault()
-
     try {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const ProvidercontractInstance = new ethers.Contract(ProfileContract,ProfileABI,provider)
@@ -130,19 +129,18 @@ function Tweetbox() {
 
           const getId = await ProvidercontractInstance.addressIdMapping(account);
           const profileMetada = await ProvidercontractInstance.tokenURI(getId)
-          console.log(getId.toString())
+          // console.log(getId.toString())
       
-          console.log(profileMetada)
+          // console.log(profileMetada)
           const profileImg = await fetch(profileMetada)
           const toJsonData = await profileImg.json()
           setProfileIMG(`https://ipfs.io/ipfs/${(toJsonData.image).slice(7)}`)
-          console.log("Image url = ", `https://ipfs.io/ipfs/${(toJsonData.image).slice(7)}`)
+          // console.log("Image url = ", `https://ipfs.io/ipfs/${(toJsonData.image).slice(7)}`)
         }
 
         else{
-          console.log("No profile Image")
+          // console.log("No profile Image")
         }
-
            
     } catch (error) {
         alert(error)
@@ -152,6 +150,8 @@ function Tweetbox() {
   useEffect(() => {
     getProfileURL();
   }, [])
+
+  const [imgSelect, setImgSelect]= useState("Select Img")
   return (
     <div className='tweetBox'>
 
@@ -172,7 +172,7 @@ function Tweetbox() {
                       value={tweetImage}
                       placeholder='Enter Image URL' type="text"/> */}
 
-                      <label htmlFor="inputTag">Select Img
+                      <label htmlFor="inputTag">{imgSelect}
                         <input type="file" id='inputTag' onChange={handleFileUpload}/>
                       </label>
 

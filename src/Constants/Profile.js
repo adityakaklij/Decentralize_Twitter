@@ -1,4 +1,5 @@
 export const ProfileContract = "0x36fE132da7b3eD73653f943937766968b75dFF44"
+// Final Contract;- 0x1f1C0DF3da8cEDfF21183d2Ca3129fD88aeF3CF7
 export const ProfileABI = [
 	{
 		"inputs": [],

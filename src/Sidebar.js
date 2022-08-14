@@ -12,6 +12,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { Button } from '@mui/material';
 
 function Sidebar() {
+
   return (
 
     <div className="sidebar">
@@ -33,6 +34,7 @@ function Sidebar() {
         {/* Tweet Button */}
          
          <Button variant='outlined' className='sidebar_tweet' fullWidth>Tweet</Button>
+
     </div>
 
   )
