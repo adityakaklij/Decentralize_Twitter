@@ -1,0 +1,62 @@
+#chooseFile{
+    background-color: var(--twitter-background);
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 67%;
+    padding: 25px 25px;
+    color: red;
+}
+#chooseFile {
+    /* background-color: aqua; */
+    margin-left: 40%;
+    margin-top: 45%;
+    border-radius: 15px;
+}
+.mintBtn{
+    padding-top: 50%;
+    margin-top: 15%;
+    /* align-items: center; */
+    background-color: var(--twitter-color);
+    color: white;
+    padding: 10px 25px;
+    font-size: 1.5em;
+    border-radius: 10px;
+    border: none;
+    margin-left: 40%;
+}
+
+label{
+    
+    padding: 10px;
+    border: 0.5px solid var(--twitter-color);
+    cursor: pointer;
+    max-width: 24%;
+    border-radius: 16px;
+    text-align: center;
+    background-color: var(--twitter-background);
+    color: var(--twitter-color);
+    margin-top: 22%;
+    margin-left: 41%;
+
+}
+
+#chooseFile{
+    display: none;
+}
+
+.btn{
+    min-width: 400px;
+}
+
+.form{
+    padding-left: 20px;
+    margin-left: 20px;
+    margin-top: 60%;
+}
+
+h3{
+    padding: 20px;
+}

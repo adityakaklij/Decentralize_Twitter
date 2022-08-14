@@ -6,7 +6,6 @@ import db from './Firebase/firebase1'
 import { AppContext } from './Context/AppContext'
 
 import { ABI, contractAddress } from './Constants/data'
-import { ProfileContract, ProfileABI } from './Constants/Profile'
 import { ethers } from 'ethers'
 
 function Feed() {
@@ -66,25 +65,7 @@ function Feed() {
   }
   const dumy = "Dumy"
 
-  async function getProfileURL(e){
-    e.preventDefault()
-
-    try {
-        const ProvidercontractInstance = new ethers.Contract(ProfileContract,ProfileABI,provider)
-        const getId = await ProvidercontractInstance.addressIdMapping(account);
-        const profileMetada = await ProvidercontractInstance.tokenURI(getId)
-        console.log(getId.toString())
-    
-        console.log(profileMetada)
-        const profileImg = await fetch(profileMetada)
-        const toJsonData = await profileImg.json()
-        console.log("Image url = ", `https://ipfs.io/ipfs/${(toJsonData.image).slice(7)}`)
-
-           
-    } catch (error) {
-        alert(error)
-    }
-  }
+  
 
   return (
     <div className='feed'>
@@ -98,7 +79,7 @@ function Feed() {
         
         {/* Posts */}
         <button onClick={getBtn}>Get Tweets</button>
-        <button onClick={getProfileURL}>Get Profile</button>
+        {/* <button onClick={getProfileURL}>Get Profile</button> */}
         {posts.map( posts => (
           <Post
           // key = {post[1]}
@@ -112,7 +93,8 @@ function Feed() {
             text={posts[1]}
             // avatar={post.avatar}
             // avatar={posts[2]}
-            avatar="https://ipfs.io/ipfs/bafybeignermswfazuhctl6wwtlvird676ylli3vor7k7em7eqnkm6rjl2e/1_G9UfaUBS_VqtFILMe37fZw.jpeg"
+            // avatar="https://ipfs.io/ipfs/bafybeignermswfazuhctl6wwtlvird676ylli3vor7k7em7eqnkm6rjl2e/1_G9UfaUBS_VqtFILMe37fZw.jpeg"
+            avatar=""
             // image={post.image}
             // image={async ()=>{await fetch(posts[2])}}
             image={posts[2]}

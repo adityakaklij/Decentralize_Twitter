@@ -8,8 +8,16 @@ import RepeatIcon from '@mui/icons-material/Repeat';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PublishIcon from '@mui/icons-material/Publish';
 
+import { ProfileContract, ProfileABI } from './Constants/Profile'
+import { ethers } from 'ethers'
+import { useContext } from 'react';
+import { AppContext } from './Context/AppContext';
+import { useState , useEffect} from 'react';
+
+
 
 function Post({
+    
     displayName,
     userName,
     verified,
@@ -18,12 +26,20 @@ function Post({
     avatar
 }) {
 
+    const account = useContext(AppContext)
+    
+
+    
+
+      
+      
+
   return (
     <div className='post'>
         <div className="post_avatar">
-            <Avatar src = {avatar}/>
+            <Avatar src = {""}/>
+            {/* <Avatar src = "https://ipfs.io/ipfs/bafybeignermswfazuhctl6wwtlvird676ylli3vor7k7em7eqnkm6rjl2e/1_G9UfaUBS_VqtFILMe37fZw.jpeg"/> */}
         </div>
-
         <div className="post_body">
             <div className="post_header">
 

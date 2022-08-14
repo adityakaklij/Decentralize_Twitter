@@ -27,15 +27,33 @@
     font-weight: 900 !important;
     text-transform: inherit !important;
     border-radius: 30px !important;
-    width: 80px !important;
+    width: 100px !important;
     height: 40px !important;
     margin-top: 20px !important;
     margin-left: auto !important;
-    margin-right: 10px !important;
+    margin-right: 25px !important;
 
 }
 
-.tweetBox_imageInput{
-    border: none;
-    padding: 10px;
+label{
+    
+    padding: 7px;
+    border: 0.5px solid var(--twitter-color);
+    cursor: pointer;
+    max-width: 20%;
+    border-radius: 20px;
+    text-align: center;
+    background-color: var(--twitter-background);
+    color: var(--twitter-color);
+    margin-top: 19px;
+    margin-left: 22px;
+
+}
+
+.inputField{
+
+}
+
+#inputTag {
+    display: none;
 }

@@ -5,6 +5,10 @@ import Sidebar from './Sidebar';
 import Widgets from './Widgets';
 import {AppContext} from './Context/AppContext'
 
+import { BrowserRouter as Router, Switch, Route,} from "react-router-dom";
+import ProfileUpload from './UploadProfile/ProfileUpload';
+
+
 function App() {
 
   const [isWalletInstalled, setIsWalletInstalled] = useState(false)
@@ -13,6 +17,7 @@ function App() {
   useEffect( () =>{
     if(window.ethereum){
       setIsWalletInstalled(true);
+      // connectWallet()
     }
   },[]);
 
@@ -41,22 +46,38 @@ function App() {
 
       return (
         <>
+        <Router basename='/'>
+
           <AppContext.Provider value = {account}>
               <div className="app">
 
 
               {/* SideBar */}
                 <Sidebar/>
+            <Switch>
+                <Route exact path='/'>
+                  {/* Feed */}
+                  <Feed/>
 
+                  {/* Widges */}
+                  <Widgets/>
 
-              {/* Feed */}
-              <Feed/>
+                </Route>
 
-              {/* Widges */}
-              <Widgets/>
+                <Route path='/ProfileUpload'>
+
+                  <ProfileUpload/>
+                  <Widgets/>
+                </Route>
+
+                </Switch>
+
+              
             
             </div>
         </AppContext.Provider>
+
+        </Router>
         </>
       );
     }

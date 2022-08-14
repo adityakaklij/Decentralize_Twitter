@@ -17,14 +17,19 @@ function Sidebar() {
     <div className="sidebar">
         <TwitterIcon className='sidebar_twitterIcon'/>
 
+        <a href='/'>
+
         <SidebarOption active Icon={TwitterIcon}  text="Home" />
+        </a>
         <SidebarOption Icon={TagIcon} text="Explore" />
         <SidebarOption Icon={NotificationsIcon} text="Notification" />
         <SidebarOption Icon={MessageIcon} text="Message" />
-        <SidebarOption Icon={BookmarkIcon} text="Bookmarks" />
-        <SidebarOption Icon={PersonIcon} text="Profile" />
-        <SidebarOption Icon={SettingsIcon} text="Setting" />
+        <SidebarOption Icon={BookmarkIcon} text="Bookmarks"/>
 
+        <a href="/ProfileUpload">
+        <SidebarOption Icon={PersonIcon} text="Profile" />
+        </a>
+        <SidebarOption Icon={SettingsIcon} text="Setting" />
         {/* Tweet Button */}
          
          <Button variant='outlined' className='sidebar_tweet' fullWidth>Tweet</Button>

@@ -1,5 +1,5 @@
 import { Avatar, Button } from '@mui/material'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { AppContext } from './Context/AppContext'
 import "./css/Tweetbox.css"
 import db from './Firebase/firebase1'
@@ -8,9 +8,10 @@ import svgString from './identicons/icons.mjs'
 import {NFTStorage , Blob, File} from 'nft.storage'
 import { ethers } from 'ethers'
 import { ABI, contractAddress } from './Constants/data'
+import { ProfileContract, ProfileABI } from './Constants/Profile'
 
 
-const APIKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..0N-3jYVHOy1etZJxQ9jSm_Pk34h9RVmTpSSO2H_XnX0'
+const APIKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDFhNWNiQTlFYkQwRTcxZWE4NTA0Zjk5NGE0MkNBOUE3MWRlQTkwZTAiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2MDM5NDEyMjQxOSwibmFtZSI6IkRUd2l0dGVyLTEifQ.0N-3jYVHOy1etZJxQ9jSm_Pk34h9RVmTpSSO2H_XnX0'
 function Tweetbox() {
 
   const [uploadFile ,setUploadFile] = useState(null)
@@ -20,6 +21,8 @@ function Tweetbox() {
 
   const[tweetMessage, setTweetMessage] = useState('')
   const [tweetImage, setTweetImage] = useState('')
+
+  const[profileIMG, setProfileIMG] = useState()
 
 
   const account = useContext(AppContext)
@@ -55,8 +58,8 @@ function Tweetbox() {
         const { car } = await NFTStorage.encodeBlob(someData)
         const metaData = await nftStorage.store({
           name:account,
-          description: tweetData,
-          image:car// The link will end with /blob
+          description: tweetMessage,
+          image:someData// The link will end with /blob
           
       });
       setMetaDataURl(getIPFSGatewayURL(metaData.url));
@@ -114,19 +117,54 @@ function Tweetbox() {
     setUploadFile(event.target.files[0])
 
   }
+
+  async function getProfileURL(e){
+    // e.preventDefault()
+
+    try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const ProvidercontractInstance = new ethers.Contract(ProfileContract,ProfileABI,provider)
+        const checkProfile = await ProvidercontractInstance.nftCount(account)
+
+        if(checkProfile.toString() == 1){
+
+          const getId = await ProvidercontractInstance.addressIdMapping(account);
+          const profileMetada = await ProvidercontractInstance.tokenURI(getId)
+          console.log(getId.toString())
+      
+          console.log(profileMetada)
+          const profileImg = await fetch(profileMetada)
+          const toJsonData = await profileImg.json()
+          setProfileIMG(`https://ipfs.io/ipfs/${(toJsonData.image).slice(7)}`)
+          console.log("Image url = ", `https://ipfs.io/ipfs/${(toJsonData.image).slice(7)}`)
+        }
+
+        else{
+          console.log("No profile Image")
+        }
+
+           
+    } catch (error) {
+        alert(error)
+    }
+  }
+
+  useEffect(() => {
+    getProfileURL();
+  }, [])
   return (
     <div className='tweetBox'>
 
         <form>
             <div className="tweetBox_input">
 
-                <Avatar src=""/>
-
+                <Avatar src={profileIMG}/>
                 <input 
-                    onChange={(e) => setTweetMessage(e.target.value)}
-                    value={tweetMessage}
+                    type="text"
                     placeholder="What's happing?" 
-                    type="text" 
+                    onChange={(e) => {setTweetMessage(e.target.value)}}
+                    value={tweetMessage}
+                     
                     />  
             </div>
                 {/* <input className='tweetBox_imageInput' 
@@ -134,7 +172,9 @@ function Tweetbox() {
                       value={tweetImage}
                       placeholder='Enter Image URL' type="text"/> */}
 
-                      <input type="file" onChange={handleFileUpload}/>
+                      <label htmlFor="inputTag">Select Img
+                        <input type="file" id='inputTag' onChange={handleFileUpload}/>
+                      </label>
 
             <Button 
                   type = "submit" className='tweetBox_tweetButton'

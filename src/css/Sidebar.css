@@ -23,3 +23,7 @@
     height: 30px !important;
     margin-top: 20px !important;
 }
+a{
+    text-decoration: none;
+     color: inherit;
+}
