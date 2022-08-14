@@ -13,6 +13,3 @@ Profile NFT is ERC721, so it will be tradable!
 ## Polygon Blockchain
 
 
-
-
-FireBase.js file is not at git
