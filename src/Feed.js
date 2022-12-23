@@ -19,14 +19,6 @@ function Feed() {
   const signer = provider.getSigner();
   const contractInstance = new ethers.Contract(contractAddress, ABI, provider);
 
-  useEffect(() => {
-    // db.collection("posts").onSnapshot((snapshot) =>
-    //   setPost(snapshot.docs.map((doc) => doc.data()))
-    // );
-
-    getBtn();
-    checkVerified()
-  });
   const [verifyBatch, setVerifyBatch] = useState(false)
 
   const checkVerified = async() =>{
@@ -80,6 +72,15 @@ function Feed() {
     // console.log("Arr1 is", arr1)
 
   }
+
+  useEffect(() => {
+    // db.collection("posts").onSnapshot((snapshot) =>
+    //   setPost(snapshot.docs.map((doc) => doc.data()))
+    // );
+
+    getBtn();
+    checkVerified()
+  });
 
   return (
     <div className='feed'>

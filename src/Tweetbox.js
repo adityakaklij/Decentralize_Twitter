@@ -9,9 +9,11 @@ import {NFTStorage , Blob} from 'nft.storage'
 import { ethers } from 'ethers'
 import { ABI, contractAddress } from './Constants/data'
 import { ProfileContract, ProfileABI } from './Constants/Profile'
+import * as PushAPI from "@pushprotocol/restapi";
 
+const {REACT_APP_PR_KEY} = process.env
 
-const APIKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..0N-3jYVHOy1etZJxQ9jSm_Pk34h9RVmTpSSO2H_XnX0'
+const APIKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDFhNWNiQTlFYkQwRTcxZWE4NTA0Zjk5NGE0MkNBOUE3MWRlQTkwZTAiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2MDQ5ODY5ODQ0MSwibmFtZSI6IlR3aXR0ZXJfZEFwcCJ9.JHnmqAMSQDQUTXSNclRldwiDZqo3i4_7--Bg7ISn_Oc'
 function Tweetbox() {
 
   const [uploadFile ,setUploadFile] = useState(null)
@@ -22,13 +24,16 @@ function Tweetbox() {
   const [tweetImage, setTweetImage] = useState('')
 
   const[profileIMG, setProfileIMG] = useState()
+  const [walletAddress, setWalletAddress] = useState("0x")
+  
 
 
   const account = useContext(AppContext)
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const signer = provider.getSigner();
-  const contractInstance = new ethers.Contract(contractAddress,ABI,signer)
+  const signer2 = provider.getSigner();
+  const contractInstance = new ethers.Contract(contractAddress,ABI,signer2)
+
 
   // Function to send the data to the FireBase, Not in used Now.
   const sendTweet = (e)=>{
@@ -103,6 +108,41 @@ function Tweetbox() {
         const createtweet = await contractInstance.createTweet(getIPFSGatewayURL(metaData.url));
         await createtweet.wait()
         window.alert("Tweet created :)")
+  } 
+
+  // console.log("test not")
+  const PK = REACT_APP_PR_KEY; // channel private key
+  const Pkey = `0x${PK}`;
+  const signer = new ethers.Wallet(Pkey);
+
+  const getPushNotification = async() => {
+
+    try {
+      const address = await signer.getAddress()
+      const apiResponse = await PushAPI.payloads.sendNotification({
+        signer,
+        type: 1, // broadcast
+        identityType: 2, // direct payload
+        notification: {
+          title: `Tweet create`,
+          body: `Tweet created by ${address}`
+        },
+        payload: {
+          title: `Tweet by ${address}`,
+          body: `Tweet:- ${tweetMessage}`,
+          cta: 'asd',
+          img: 'dfs'
+        },
+        channel: 'eip155:5:0x92382c1EC09a72cd4a6bA024C4553a16a2250C2F', // your channel address
+        env: 'staging'
+      });
+      
+      // apiResponse?.status === 204, if sent successfully!
+      console.log('API repsonse: ', apiResponse);
+      console.log("test not")
+    } catch (err) {
+      console.error('Error: ', err);
+    }
   }
 
   const sendTweetIPFS = async(e) =>{
@@ -147,14 +187,15 @@ function Tweetbox() {
     }
   }
 
-  useEffect(() => {
-    getProfileURL();
-  }, [])
+  // useEffect(() => {
+  //   getProfileURL();
+  // }, [])
 
   const [imgSelect, setImgSelect]= useState("Select Img")
   return (
     <div className='tweetBox'>
 
+              <button onClick={getPushNotification}>Test Notifications</button>
         <form>
             <div className="tweetBox_input">
 

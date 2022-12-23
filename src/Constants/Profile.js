@@ -1,5 +1,6 @@
-export const ProfileContract = "0x36fE132da7b3eD73653f943937766968b75dFF44"
-// Final Contract;- 0x1f1C0DF3da8cEDfF21183d2Ca3129fD88aeF3CF7
+export const ProfileContract = "0x76aCFA1C70EC352AbDaA4De91a8b061a3936A983" // Polygon
+// export const ProfileContract = "0x36fE132da7b3eD73653f943937766968b75dFF44"// OLD
+// export const ProfileContract = "0x1f1C0DF3da8cEDfF21183d2Ca3129fD88aeF3CF7" // Rinkeby
 export const ProfileABI = [
 	{
 		"inputs": [],

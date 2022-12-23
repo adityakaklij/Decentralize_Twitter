@@ -18,7 +18,8 @@ function Widgets() {
 
         {/* From the twitter Embede Part   */}
         
-        <TwitterTweetEmbed tweetId={'1555618663335886849'}></TwitterTweetEmbed>
+        {/* <TwitterTweetEmbed tweetId={'1555618663335886849'}></TwitterTweetEmbed> */}
+        <TwitterTweetEmbed tweetId={'1598037715404345345'}></TwitterTweetEmbed>
 
         <TwitterTimelineEmbed
           sourceType='profile'

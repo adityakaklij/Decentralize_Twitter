@@ -12,11 +12,12 @@ import ProfileUpload from './UploadProfile/ProfileUpload';
 function App() {
 
   const [isWalletInstalled, setIsWalletInstalled] = useState(false)
+  // const [isWalletInstalled, setIsWalletInstalled] = useState(true)
   const [account, setAccount] = useState(null)
 
   useEffect( () =>{
-    if(window.ethereum){
-      setIsWalletInstalled(true);
+      if(window.ethereum){
+        setIsWalletInstalled(true);
       connectWallet()
     }
   },[]);
