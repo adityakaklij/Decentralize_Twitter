@@ -107,6 +107,7 @@ function Tweetbox() {
     // It's working properly.
         const createtweet = await contractInstance.createTweet(getIPFSGatewayURL(metaData.url));
         await createtweet.wait()
+        await getPushNotification()// Push Notification will be send!
         window.alert("Tweet created :)")
   } 
 
@@ -130,10 +131,10 @@ function Tweetbox() {
         payload: {
           title: `Tweet by ${address}`,
           body: `Tweet:- ${tweetMessage}`,
-          cta: 'asd',
-          img: 'dfs'
+          cta: '',
+          img: `${imageView}`
         },
-        channel: 'eip155:5:0x92382c1EC09a72cd4a6bA024C4553a16a2250C2F', // your channel address
+        channel: 'eip155:5:0x068E4E53f661Ac33ef0Cf2e63EbC46cDd8652700', // your channel address
         env: 'staging'
       });
       
@@ -195,7 +196,7 @@ function Tweetbox() {
   return (
     <div className='tweetBox'>
 
-              <button onClick={getPushNotification}>Test Notifications</button>
+              {/* <button onClick={getPushNotification}>Test Notifications</button> */}
         <form>
             <div className="tweetBox_input">
 
