@@ -134,13 +134,14 @@ function Tweetbox() {
           cta: '',
           img: `${imageView}`
         },
-        channel: 'eip155:5:0x068E4E53f661Ac33ef0Cf2e63EbC46cDd8652700', // your channel address
+        channel: 'eip155:5:0xCaC061A1DC5Adea771779A6656F39337BAFA394B', // dTwitter channel address
         env: 'staging'
       });
       
       // apiResponse?.status === 204, if sent successfully!
       console.log('API repsonse: ', apiResponse);
       console.log("test not")
+
     } catch (err) {
       console.error('Error: ', err);
     }
@@ -166,7 +167,7 @@ function Tweetbox() {
         const ProvidercontractInstance = new ethers.Contract(ProfileContract,ProfileABI,provider)
         const checkProfile = await ProvidercontractInstance.nftCount(account)
 
-        if(checkProfile.toString() == 1){
+        if(checkProfile.toString() === 1){
 
           const getId = await ProvidercontractInstance.addressIdMapping(account);
           const profileMetada = await ProvidercontractInstance.tokenURI(getId)
