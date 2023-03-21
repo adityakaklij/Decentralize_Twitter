@@ -13,8 +13,8 @@ Profile NFT is ERC721, so it will be tradable!
 ## Deployed on Polygon Mumbai Testnet Blockchain
 
 
-<hr><hr><hr>
-<br>
+<hr>
+<br> <br> <br>
 📌 Built with:-
 
 🔹Solidity (Smart Contract) <br>
