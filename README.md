@@ -23,7 +23,7 @@ Profile NFT is ERC721, so it will be tradable!
 🔹EthersJs (To interact with smart contract) <br>
 🔹Deploy on Polygon Mumbai testnet. <br>
 <br>
-<hr><hr><hr>
+<hr><br> <br>
 
 <br><br>
 <hr>
