@@ -10,6 +10,28 @@ User can Mint their profile image as NFT.
 Profile NFT is ERC721, so it will be tradable!
 
 
-## Polygon Blockchain
+## Deployed on Polygon Mumbai Testnet Blockchain
 
 
+<hr><hr><hr>
+<br>
+📌 Built with:-
+
+🔹Solidity (Smart Contract)
+🔹React (Front-end)
+🔹IPFS (To store the data)
+🔹EthersJs (To interact with smart contract)
+🔹Deploy on Polygon Mumbai testnet.
+<br>
+<hr><hr><hr>
+
+<br><br>
+<hr>
+<img width="1436" alt="image" src="https://user-images.githubusercontent.com/90379168/226534008-e192dbff-1603-4c98-88d9-080db3e66da8.png">
+
+
+
+<br><br>
+<hr>
+<br>
+<img width="1428" alt="image" src="https://user-images.githubusercontent.com/90379168/226534469-457d6562-4c2e-4ceb-bc01-eee5b389011c.png">
