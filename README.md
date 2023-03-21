@@ -17,11 +17,11 @@ Profile NFT is ERC721, so it will be tradable!
 <br>
 📌 Built with:-
 
-🔹Solidity (Smart Contract)
-🔹React (Front-end)
-🔹IPFS (To store the data)
-🔹EthersJs (To interact with smart contract)
-🔹Deploy on Polygon Mumbai testnet.
+🔹Solidity (Smart Contract) <br>
+🔹React (Front-end) <br>
+🔹IPFS (To store the data) <br>
+🔹EthersJs (To interact with smart contract) <br>
+🔹Deploy on Polygon Mumbai testnet. <br>
 <br>
 <hr><hr><hr>
 
